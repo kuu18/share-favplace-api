@@ -9,8 +9,6 @@ services:
       - ./dbdata:/var/lib/postgresql/data
     ports:
       - "${DB_PORT}:${DB_PORT}"
-    networks:
-      - back
 
   pgadmin4:
     image: dpage/pgadmin4
@@ -21,8 +19,6 @@ services:
       - ./pgadmin4:/var/lib/pgadmin
     env_file:
       - ./environment/pgadmin4-variables.env
-    networks:
-      - back
     depends_on:
       - db
 
@@ -42,11 +38,5 @@ services:
     ports:
       - "${API_PORT}:${API_PORT}"
       - "${DEBUG_PORT}:${DEBUG_PORT}"
-    networks:
-      - back
     depends_on:
       - db
-
-networks:
-  back:
-    external: false
