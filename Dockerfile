@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk
+FROM amazoncorretto:17
 
 ARG WORKDIR
 
@@ -8,5 +8,3 @@ ENV HOME=/${WORKDIR} \
     HOST=0.0.0.0
 
 WORKDIR ${HOME}
-
-RUN microdnf install findutils

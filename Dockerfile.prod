@@ -2,13 +2,17 @@
 # Build stage
 #
 FROM amazoncorretto:17 AS build
-COPY ./ /app
-RUN cd /app && ./gradlew build
-
+ENV HOME=${WORKDIR} \
+    LANG=C.UTF-8 \
+    TZ=Asia/Tokyo \
+    HOST=0.0.0.0
+COPY ./ ${HOME}
+RUN gradle wrap
+RUN cd ${HOME} && ./gradlew build
 #
 # Package stage
 #
 FROM amazoncorretto:17-alpine
-COPY --from=build /app/build/libs/share-favplace-api-0.0.1-SNAPSHOT.jar share-favplace-api.jar
+COPY --from=build ${HOME}/build/libs/share-favplace-api-0.0.1-SNAPSHOT.jar share-favplace-api.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","share-favplace-api.jar"]
