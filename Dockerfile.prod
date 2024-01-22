@@ -7,7 +7,6 @@ ENV HOME=${WORKDIR} \
     TZ=Asia/Tokyo \
     HOST=0.0.0.0
 COPY ./ ${HOME}
-RUN gradle wrap
 RUN cd ${HOME} && ./gradlew build
 #
 # Package stage
