@@ -1,0 +1,20 @@
+#
+# Build stage
+#
+FROM gradle:8.0.0-jdk17 AS build
+ARG WORKDIR
+ENV HOME=/${WORKDIR} \
+    LANG=C.UTF-8 \
+    TZ=Asia/Tokyo \
+    HOST=0.0.0.0
+WORKDIR ${HOME}
+COPY ./ ${HOME}
+RUN cd ${HOME} && ./gradlew build
+
+#
+# Package stage
+#
+FROM openjdk:17-jdk
+COPY --from=build ${HOME}/build/libs/share-favplace-api-0.0.1-SNAPSHOT.jar share-favplace-api.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","share-favplace-api.jar"]
