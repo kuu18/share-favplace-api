@@ -3,6 +3,7 @@
 #
 ARG WORKDIR
 FROM amazoncorretto:17 AS build
+RUN echo ${WORKDIR}
 COPY ./ ${WORKDIR}
 RUN cd ${WORKDIR} && ./gradlew build
 #
@@ -13,6 +14,8 @@ ENV HOME=${WORKDIR} \
     LANG=C.UTF-8 \
     TZ=Asia/Tokyo \
     HOST=0.0.0.0
+RUN echo ${WORKDIR}
+RUN echo ${HOME}
 COPY --from=build ${HOME}/build/libs/share-favplace-api-0.0.1-SNAPSHOT.jar share-favplace-api.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","share-favplace-api.jar"]
