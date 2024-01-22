@@ -1,17 +1,18 @@
 #
 # Build stage
 #
+ARG WORKDIR
+ENV HOME=${WORKDIR}
 FROM amazoncorretto:17 AS build
-ENV HOME=${WORKDIR} \
-    LANG=C.UTF-8 \
-    TZ=Asia/Tokyo \
-    HOST=0.0.0.0
 COPY ./ ${HOME}
 RUN cd ${HOME} && ./gradlew build
 #
 # Package stage
 #
 FROM amazoncorretto:17-alpine
+ENV LANG=C.UTF-8 \
+    TZ=Asia/Tokyo \
+    HOST=0.0.0.0
 COPY --from=build ${HOME}/build/libs/share-favplace-api-0.0.1-SNAPSHOT.jar share-favplace-api.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","share-favplace-api.jar"]
