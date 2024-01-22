@@ -9,6 +9,7 @@ ENV HOME=/${WORKDIR} \
     HOST=0.0.0.0
 WORKDIR ${HOME}
 COPY ./ ${HOME}
+RUN gradle wrap
 RUN cd ${HOME} && ./gradlew build
 
 #
