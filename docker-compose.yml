@@ -26,13 +26,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: builder
       args:
         WORKDIR: ${WORKDIR}
     container_name: share-favplace-api
     env_file:
       - ./environment/api-variables.env
     tty: true
-    command: ./gradlew clean bootRun
+    command: ./gradlew bootRun
     volumes:
       - .:/${WORKDIR}
     ports:

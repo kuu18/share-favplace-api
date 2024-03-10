@@ -1,7 +1,7 @@
 #
 # Build stage
 #
-FROM amazoncorretto:17 AS build
+FROM amazoncorretto:17 AS builder
 ARG WORKDIR
 ENV HOME=/${WORKDIR} \
     LANG=C.UTF-8 \
@@ -19,6 +19,6 @@ ENV HOME=${WORKDIR} \
     LANG=C.UTF-8 \
     TZ=Asia/Tokyo \
     HOST=0.0.0.0
-COPY --from=build ${HOME}/build/libs/share-favplace-api-0.0.1-SNAPSHOT.jar share-favplace-api.jar
+COPY --from=builder ${HOME}/build/libs/share-favplace-api-0.0.1-SNAPSHOT.jar share-favplace-api.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","share-favplace-api.jar"]
