@@ -48,8 +48,11 @@ tasks.named('test') {
 }
 
 flyway {
-	url = project.property('DB_URL')
-	user = project.property('DB_USERNAME')
-	password = project.property('DB_PASSWORD')
+	println DB_URL
+	println DB_USERNAME
+	println DB_PASSWORD
+	url = DB_URL
+	user = DB_USERNAME
+	password = DB_PASSWORD
 	cleanDisabled = false
 }
