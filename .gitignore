@@ -54,3 +54,4 @@ Thumbs.db
 *.bak
 environment
 *.env
+.bash_history

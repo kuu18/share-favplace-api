@@ -1,7 +1,14 @@
+buildscript {
+	dependencies {
+		classpath("org.flywaydb:flyway-database-postgresql:10.10.0")
+	}
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.0'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id "org.flywaydb.flyway" version "10.10.0"
 }
 
 group = 'com.pandaman'
@@ -23,7 +30,10 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.flywaydb:flyway-core'
 	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.postgresql:postgresql'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -35,4 +45,11 @@ bootRun {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+flyway {
+	url = DB_URL
+	user = DB_USERNAME
+	password = DB_PASSWORD
+	cleanDisabled = false
 }
