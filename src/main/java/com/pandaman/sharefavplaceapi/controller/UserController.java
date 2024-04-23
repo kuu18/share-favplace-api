@@ -1,6 +1,6 @@
 package com.pandaman.sharefavplaceapi.controller;
 
-import com.pandaman.sharefavplaceapi.entity.User;
+import com.pandaman.sharefavplaceapi.domain.User;
 import com.pandaman.sharefavplaceapi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

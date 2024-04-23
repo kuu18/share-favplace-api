@@ -1,4 +1,4 @@
-package com.pandaman.sharefavplaceapi.entity;
+package com.pandaman.sharefavplaceapi.domain;
 
 
 import jakarta.persistence.Column;

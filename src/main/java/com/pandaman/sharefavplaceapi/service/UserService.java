@@ -1,6 +1,6 @@
 package com.pandaman.sharefavplaceapi.service;
 
-import com.pandaman.sharefavplaceapi.entity.User;
+import com.pandaman.sharefavplaceapi.domain.User;
 
 import java.util.List;
 
