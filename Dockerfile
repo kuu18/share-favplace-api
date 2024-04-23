@@ -3,6 +3,7 @@
 #
 FROM amazoncorretto:17 AS builder
 ARG WORKDIR
+ARG DB_URL
 ENV HOME=/${WORKDIR} \
     LANG=C.UTF-8 \
     TZ=Asia/Tokyo \
@@ -10,6 +11,7 @@ ENV HOME=/${WORKDIR} \
 WORKDIR ${HOME}
 COPY ./ ${HOME}
 RUN echo ${DB_URL}
+RUN echo ${WORKDIR}
 RUN ./gradlew build
 #
 # Package stage
