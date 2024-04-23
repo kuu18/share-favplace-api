@@ -4,6 +4,8 @@
 FROM amazoncorretto:17 AS builder
 ARG WORKDIR
 ARG DB_URL
+ARG DB_USERNAME
+ARG DB_PASSWORD
 ENV HOME=/${WORKDIR} \
     LANG=C.UTF-8 \
     TZ=Asia/Tokyo \
