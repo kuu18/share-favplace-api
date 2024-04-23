@@ -12,6 +12,8 @@ WORKDIR ${HOME}
 COPY ./ ${HOME}
 RUN echo ${DB_URL}
 RUN echo ${WORKDIR}
+RUN echo ${DB_USERNAME}
+RUN echo ${DB_PASSWORD}
 RUN ./gradlew build
 #
 # Package stage
