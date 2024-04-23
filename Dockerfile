@@ -3,19 +3,12 @@
 #
 FROM amazoncorretto:17 AS builder
 ARG WORKDIR
-ARG DB_URL
-ARG DB_USERNAME
-ARG DB_PASSWORD
 ENV HOME=/${WORKDIR} \
     LANG=C.UTF-8 \
     TZ=Asia/Tokyo \
     HOST=0.0.0.0
 WORKDIR ${HOME}
 COPY ./ ${HOME}
-RUN echo ${DB_URL}
-RUN echo ${WORKDIR}
-RUN echo ${DB_USERNAME}
-RUN echo ${DB_PASSWORD}
 RUN ./gradlew build
 #
 # Package stage
