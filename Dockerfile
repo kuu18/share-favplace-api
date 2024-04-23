@@ -9,6 +9,7 @@ ENV HOME=/${WORKDIR} \
     HOST=0.0.0.0
 WORKDIR ${HOME}
 COPY ./ ${HOME}
+ECHO ${DB_URL}
 RUN ./gradlew build
 #
 # Package stage
